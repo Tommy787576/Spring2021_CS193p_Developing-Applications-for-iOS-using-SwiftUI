@@ -8,23 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
-    var emojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🛴", "🚲", "🛵", "🏍️", "🛺", "🚔", "🚍", "🚘", "🚖", "🚡"]
-    @State var emojiCount = 15
+    var vehicleEmojis: [String]
+    var animalEmojis: [String]
+    var foodEmojis: [String]
+    @State var emojis: [String]
+    
+    init() {
+        vehicleEmojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🛴", "🚲", "🛵", "🏍️", "🛺", "🚔", "🚍", "🚘", "🚖", "🚡", "🚃", "🚝", "🚅", "🚂", "✈️", "🚀", "🛸", "🚁", "🛶", "⛵️", "🚉"]
+        animalEmojis = ["🐶", "🐱", "🐰", "🐼", "🐯", "🦁", "🐣", "🦆", "🦉", "🐴"]
+        foodEmojis = ["🍎", "🫑", "🍗", "🧄", "🥐", "🥨", "🍞", "🥩", "🌭", "🍔", "🍟", "🍕", "🫓", "🥪", "🥙", "🧆", "🌮"]
+        emojis = vehicleEmojis
+    }
     
     var body: some View {
         VStack {
+            Text("Memorize!")
+                .font(.largeTitle)
+                .fontWeight(.bold)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
-                    ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
+                    ForEach(emojis, id: \.self) { emoji in
                         CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
                     }
                 }
             }.foregroundColor(.red)
             Spacer()
             HStack {
-                remove
                 Spacer()
-                add
+                vehicles
+                Spacer()
+                animals
+                Spacer()
+                food
+                Spacer()
             }
             .font(.largeTitle)
             .padding(.horizontal)
@@ -32,23 +48,35 @@ struct ContentView: View {
         .padding(.horizontal)
     }
     
-    var remove: some View {
+//    struct Button&Text: View {
+//        var body: some View {
+//            VStack {
+//                HStack
+//            }
+//        }
+//    }
+    
+    var vehicles: some View {
         Button {
-            if emojiCount > 1 {
-                emojiCount -= 1
-            }
+            emojis = vehicleEmojis
         } label: {
-            Image(systemName: "minus.circle")
+            Image(systemName: "car")
         }
     }
     
-    var add: some View {
+    var animals: some View {
         Button {
-            if emojiCount < emojis.count {
-                emojiCount += 1
-            }
+            emojis = animalEmojis
         } label: {
-            Image(systemName: "plus.circle")
+            Image(systemName: "pawprint")
+        }
+    }
+
+    var food: some View {
+        Button {
+            emojis = foodEmojis
+        } label: {
+            Image(systemName: "fork.knife")
         }
     }
 }
