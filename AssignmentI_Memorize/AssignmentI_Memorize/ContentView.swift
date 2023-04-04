@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Memorize
 //
-//  Created by 林士平 on 2023/3/9.
+//  Created by 林士平 on 2023/4/4.
 //
 
 import SwiftUI
@@ -48,35 +48,36 @@ struct ContentView: View {
         .padding(.horizontal)
     }
     
-//    struct Button&Text: View {
-//        var body: some View {
-//            VStack {
-//                HStack
-//            }
-//        }
-//    }
-    
     var vehicles: some View {
-        Button {
-            emojis = vehicleEmojis
-        } label: {
-            Image(systemName: "car")
+        VStack {
+            Button {
+                emojis = vehicleEmojis.shuffled()
+            } label: {
+                Image(systemName: "car")
+            }
+            Text("Vehicles").font(.footnote)
         }
     }
     
     var animals: some View {
-        Button {
-            emojis = animalEmojis
-        } label: {
-            Image(systemName: "pawprint")
+        VStack {
+            Button {
+                emojis = animalEmojis.shuffled()
+            } label: {
+                Image(systemName: "pawprint")
+            }
+            Text("Animals").font(.footnote)
         }
     }
 
     var food: some View {
-        Button {
-            emojis = foodEmojis
-        } label: {
-            Image(systemName: "fork.knife")
+        VStack {
+            Button {
+                emojis = foodEmojis.shuffled()
+            } label: {
+                Image(systemName: "fork.knife")
+            }
+            Text("Food").font(.footnote)
         }
     }
 }
