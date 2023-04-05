@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		19028F7529DBD0E400972263 /* AssignmentI_Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssignmentI_Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19028F7829DBD0E400972263 /* AssignmentI_MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentI_MemorizeApp.swift; sourceTree = "<group>"; };
-		19028F7A29DBD0E400972263 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		19028F7A29DBD0E400972263 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		19028F7C29DBD0E600972263 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19028F7F29DBD0E600972263 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */

@@ -11,11 +11,11 @@ struct ContentView: View {
     var vehicleEmojis: [String]
     var animalEmojis: [String]
     var foodEmojis: [String]
-    @State var emojis: [String]
+    @State var emojis: [String] // emojis currently display
     
     init() {
-        vehicleEmojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🛴", "🚲", "🛵", "🏍️", "🛺", "🚔", "🚍", "🚘", "🚖", "🚡", "🚃", "🚝", "🚅", "🚂", "✈️", "🚀", "🛸", "🚁", "🛶", "⛵️", "🚉"]
-        animalEmojis = ["🐶", "🐱", "🐰", "🐼", "🐯", "🦁", "🐣", "🦆", "🦉", "🐴"]
+        vehicleEmojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🛴", "🚲", "🛵", "🏍️", "🛺", "🚔", "🚍", "🚘", "🚖", "🚡"]
+        animalEmojis = ["🐶", "🐱", "🐰", "🐼", "🐯", "🦁", "🐣", "🦆", "🦉"]
         foodEmojis = ["🍎", "🫑", "🍗", "🧄", "🥐", "🥨", "🍞", "🥩", "🌭", "🍔", "🍟", "🍕", "🫓", "🥪", "🥙", "🧆", "🌮"]
         emojis = vehicleEmojis
     }
@@ -26,7 +26,9 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
             ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
+                // widthThatBestFits: generate the best width of each card
+                // according to current count of emojis
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: widthThatBestFits(cardCount: emojis.count)))]) {
                     ForEach(emojis, id: \.self) { emoji in
                         CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
                     }
@@ -48,10 +50,28 @@ struct ContentView: View {
         .padding(.horizontal)
     }
     
+    func widthThatBestFits(cardCount: Int) -> CGFloat {
+        // 12mini: 4 -> 120.0, [5,9] -> 90.0, [10,16] -> 60.0, else 50.0
+        if cardCount == 4 {
+            return 120.0
+        }
+        else if cardCount <= 9 {
+            return 90.0
+        }
+        else if cardCount <= 16 {
+            return 60.0
+        }
+        else {
+            return 50.0
+        }
+    }
+    
     var vehicles: some View {
         VStack {
             Button {
+                // make a random number of cards appear on screen
                 let random = Int.random(in: 4...vehicleEmojis.count)
+                // make array shuffled
                 emojis = Array(vehicleEmojis.shuffled()[0..<random])
             } label: {
                 Image(systemName: "car")
@@ -129,8 +149,7 @@ struct CardView: View {
 
 
 
-
-
+//code for glueing code with previewer
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
