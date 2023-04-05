@@ -51,33 +51,36 @@ struct ContentView: View {
     var vehicles: some View {
         VStack {
             Button {
-                emojis = vehicleEmojis.shuffled()
+                let random = Int.random(in: 4...vehicleEmojis.count)
+                emojis = Array(vehicleEmojis.shuffled()[0..<random])
             } label: {
                 Image(systemName: "car")
             }
-            Text("Vehicles").font(.footnote)
+            Text("Vehicles").font(.footnote).foregroundColor(Color.blue)
         }
     }
     
     var animals: some View {
         VStack {
             Button {
-                emojis = animalEmojis.shuffled()
+                let random = Int.random(in: 4...animalEmojis.count)
+                emojis = Array(animalEmojis.shuffled()[0..<random])
             } label: {
                 Image(systemName: "pawprint")
             }
-            Text("Animals").font(.footnote)
+            Text("Animals").font(.footnote).foregroundColor(Color.blue)
         }
     }
 
     var food: some View {
         VStack {
             Button {
-                emojis = foodEmojis.shuffled()
+                let random = Int.random(in: 4...foodEmojis.count)
+                emojis = Array(foodEmojis.shuffled()[0..<random])
             } label: {
-                Image(systemName: "fork.knife")
+                Image(systemName: "takeoutbag.and.cup.and.straw")
             }
-            Text("Food").font(.footnote)
+            Text("Food").font(.footnote).foregroundColor(Color.blue)
         }
     }
 }
@@ -125,8 +128,9 @@ struct CardView: View {
 
 
 
-// Control what the preview works
-// Color Scheme: dark / light mode
+
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
