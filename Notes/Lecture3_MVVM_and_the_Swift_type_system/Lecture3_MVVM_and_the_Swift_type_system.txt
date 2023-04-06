@@ -1,0 +1,79 @@
+MVVM: Model-View-ViewModel
+different from MVC (Model View Controller)
+
+View: user interface code -> How your application show to users
+Model: logic of application -> UI independent, What your application exactly does
+
+ex: @state isFaceUp should be placed in model!
+
+Model ------------------------------------------> View 
+          data flow this way (i.e. read-only)
+
+@state: any information will only have to do how **the view managing itself!!**
+ex: keep track the current theme
+
+body var: return a UI that reflects the state of the model
+
+View: immutable -> will have to deconstruct if any change occurs
+
+imperative approach (how you do sth) vs. declarative approach (what you do sth)
+swiftUI is declarative (var body)
+https://youtu.be/E7Fbf7R3x6I
+declarative approach is good for user interface programming (ex: CSS, HTML)
+
+swiftUI is reactiva
+
+ViewModel: Binds View to Model
+ViewModel notices changes in Model
+ViewModel publishes "something changed" to the entire world
+View: automatically observes publications pulls data and rebuilds!
+so view will never be out of the sync with model
+
+What about the other direction? from view -> model?
+-> Store!
+
+ViewModel: processes intent!
+View will call intent function, ViewModel then modifing the Model
+
+Both struct and class have:
+sotred vars
+computed vars
+constant lets
+functions
+initialization (init())
+
+What's the difference?
+
+class only used when you strongly need to share things
+most time use struct!
+
+ViewModel in MVVM is always a class else are mostly struct
+
+beforew swiftUI -> UIKit (using class)
+
+Sometimes we just "don't care" -> Type Parameter
+Swift is a strongly-typed language
+We use a "don't care" type (we call this feature "generics")
+
+Awesome example of generics: Array
+
+Array's declaration looks something like this ...
+struct Array<Element> {
+    ...
+    func append(_ element: Element) {
+        ...
+    }
+}
+The type of the argument to append is Element!
+
+Functions are types too!
+
+ex: (Int, Int) -> Bool // take two Ints and returns a Bool
+    var foo: (Double) -> Void 
+    func doSomething(what: () -> Bool)
+
+Note that we don't use argument labels! (e.g. operant:) when excuting function types
+
+Clousers (like inline function)
+
+Back to Demo
