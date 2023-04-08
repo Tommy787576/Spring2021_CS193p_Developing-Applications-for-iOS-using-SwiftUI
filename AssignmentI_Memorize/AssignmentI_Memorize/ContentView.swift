@@ -118,6 +118,7 @@ struct CardView: View {
                 Text(content).font(.largeTitle)
             } else {
                 shape.fill()
+                Text(" ").font(.largeTitle)
             }
         }
         .onTapGesture {
