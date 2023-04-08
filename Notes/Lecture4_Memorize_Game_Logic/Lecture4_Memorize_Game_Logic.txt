@@ -1,0 +1,52 @@
+enum is value type (like struct) -> copy
+Setting the value of an enum -> <name of enum>.<name of state>
+
+each state can have the associative data
+ex:
+enum FastFoodMenuItem {
+    case hamburger(numberOfPatties: Int)
+    ......
+}
+
+An enum's state is usually checked with a switch statement!
+switch have to cover all cases!! -> default:
+
+a switch can be multiple lines and does not fall through to the next case!
+ex:
+switch menuItem {
+    case .hamburger(let pattyCount): print("a burger \(pattyCount))
+}
+
+An enum can have methods (and computed properties) but no stored properties
+
+In an enum's own methods, you can test the enum's state (and get associated data) using self...
+
+getting all the cases of an enumeration:
+for model in <name of enum>.allCase {
+
+}
+
+GridItem is a struct, it has a enum Size with case adaptive!
+
+Optional is just an enum!!
+Declaring something of type Optional<T> can be done with the syntax T?
+
+enum Optional<T> {
+    case none
+    case some(T)
+}
+
+switch hello {
+    case .none: // raise an exception (crash)
+    case .some(let data): print(data)
+}
+
+ex:
+var hello: String?  ===  var hello: String? = nil  ===  var hello: Optional<String> = .none
+let hello: String? = ...
+print(hello!)
+if let safehello = hello {
+    print(safehello)
+} else {
+    // do something else
+}
