@@ -14,8 +14,11 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Text("\(viewModel.getTheme())!")
+                .font(.largeTitle)
+                .fontWeight(.bold)
             ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: widthThatBestFits(cardCount: viewModel.cards.count)))]) {
                     ForEach(viewModel.cards) { card in
                         CardView(card: card).aspectRatio(2/3, contentMode: .fit)
                             .onTapGesture {
@@ -23,9 +26,37 @@ struct ContentView: View {
                             }
                     }
                 }
-            }.foregroundColor(.red)
+            }.foregroundColor(viewModel.getColor())
+            HStack {
+                Text("Score: \(viewModel.getScore())")
+                Spacer()
+                VStack {
+                    Button {
+                        viewModel.restart()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }.font(.largeTitle)
+                    Text("New Game").font(.footnote).foregroundColor(.blue)
+                }
+            }
         }
         .padding(.horizontal)
+    }
+    
+    func widthThatBestFits(cardCount: Int) -> CGFloat {
+        // 12mini: 4 -> 120.0, [5,9] -> 90.0, [10,16] -> 60.0, else 50.0
+        if cardCount == 4 {
+            return 120.0
+        }
+        else if cardCount <= 9 {
+            return 90.0
+        }
+        else if cardCount <= 16 {
+            return 60.0
+        }
+        else {
+            return 50.0
+        }
     }
 }
 

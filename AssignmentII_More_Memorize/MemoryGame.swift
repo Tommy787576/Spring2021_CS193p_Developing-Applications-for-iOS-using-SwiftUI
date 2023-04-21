@@ -9,6 +9,8 @@ import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
+    private(set) var score: Int
+    private var seenContents: Set<Int>  // save ids of emojis that has been faceup -> facedown
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int?
     
@@ -21,11 +23,25 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
+                    score += 2  // match
+                }
+                else {  // mismatch
+                    var id = cards[chosenIndex].id
+                    if seenContents.contains(id) {  // has already seen
+                        score -= 1
+                    }
+                    id = cards[potentialMatchIndex].id
+                    if seenContents.contains(id) {  // has already seen
+                        score -= 1
+                    }
                 }
                 indexOfTheOneAndOnlyFaceUpCard = nil
             } else {
                 for index in cards.indices {
-                    cards[index].isFaceUp = false
+                    if cards[index].isFaceUp {
+                        seenContents.insert(cards[index].id)
+                    }
+                    cards[index].isFaceUp = false   // turned back to face down
                 }
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
             }
@@ -41,6 +57,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
             cards.append(Card(content: content, id: pairIndex * 2))
             cards.append(Card(content: content, id: pairIndex * 2 + 1))
         }
+        cards.shuffle()
+        score = 0
+        seenContents = []
     }
     
     struct Card: Identifiable {
