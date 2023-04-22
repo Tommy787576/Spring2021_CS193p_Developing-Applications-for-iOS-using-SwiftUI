@@ -20,13 +20,13 @@ struct ContentView: View {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: widthThatBestFits(cardCount: viewModel.cards.count)))]) {
                     ForEach(viewModel.cards) { card in
-                        CardView(card: card).aspectRatio(2/3, contentMode: .fit)
+                        CardView(card: card, gradient: viewModel.getGradient()).aspectRatio(2/3, contentMode: .fit)
                             .onTapGesture {
                                 viewModel.choose(card)
                             }
                     }
                 }
-            }.foregroundColor(viewModel.getColor())
+            }
             HStack {
                 Text("Score: \(viewModel.getScore())")
                 Spacer()
@@ -34,7 +34,7 @@ struct ContentView: View {
                     Button {
                         viewModel.restart()
                     } label: {
-                        Image(systemName: "arrow.clockwise")
+                        Image(systemName: "gamecontroller")
                     }.font(.largeTitle)
                     Text("New Game").font(.footnote).foregroundColor(.blue)
                 }
@@ -62,19 +62,20 @@ struct ContentView: View {
 
 struct CardView: View {
     let card: MemoryGame<String>.Card
+    let gradient: Gradient
     
     var body: some View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 20.0)
             if card.isFaceUp {
                 shape.fill().foregroundColor(.white)
-                shape.strokeBorder(lineWidth: 3)
+                shape.strokeBorder(gradient, lineWidth: 5)
                 Text(card.content).font(.largeTitle) // Font.largeTitle -> type inference
             } else if card.isMatched {
                 shape.opacity(0)    // if it's match then making it opacity -> still ocupy a space
                 Text(" ").font(.largeTitle)
             } else {
-                shape.fill()
+                shape.fill(gradient)
                 Text(" ").font(.largeTitle)
             }
         }

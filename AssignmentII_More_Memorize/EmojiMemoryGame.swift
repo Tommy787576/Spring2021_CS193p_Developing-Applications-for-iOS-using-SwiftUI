@@ -20,7 +20,7 @@ class EmojiMemoryGame: ObservableObject {
 
     static func createMemoryGame(_ theme: Theme.Content) -> MemoryGame<String> {
         let emojis = theme.emojis.shuffled()
-        let numPairs = theme.numCardsToShow > emojis.count ? emojis.count : theme.numCardsToShow
+        let numPairs = theme.numPairsToShow ?? Int.random(in: 3...emojis.count)
         return MemoryGame<String>(numberOfPairsOfCards: numPairs) { pairIndex in emojis[pairIndex]
         }
     }
@@ -37,23 +37,31 @@ class EmojiMemoryGame: ObservableObject {
         currTheme.name
     }
     
-    func getColor() -> Color {
-        switch currTheme.color {
-        case "red":
-            return Color.red
-        case "orange":
-            return Color.orange
-        case "yello":
-            return Color.yellow
-        case "green":
-            return Color.green
-        case "blue":
-            return Color.blue
-        case "purple":
-            return Color.purple
-        default:
-            return Color.gray
+    func getGradient() -> Gradient {
+        var colorList: [Color] = []
+        for color in currTheme.colors {
+            switch color {
+            case "red":
+                colorList.append(Color.red)
+            case "orange":
+                colorList.append(Color.orange)
+            case "yello":
+                colorList.append(Color.yellow)
+            case "green":
+                colorList.append(Color.green)
+            case "blue":
+                colorList.append(Color.blue)
+            case "purple":
+                colorList.append(Color.purple)
+            case "pink":
+                colorList.append(Color.pink)
+            case "brown":
+                colorList.append(Color.brown)
+            default:
+                colorList.append(Color.gray)
+            }
         }
+        return Gradient(colors: colorList)
     }
     
     func getScore() -> Int {

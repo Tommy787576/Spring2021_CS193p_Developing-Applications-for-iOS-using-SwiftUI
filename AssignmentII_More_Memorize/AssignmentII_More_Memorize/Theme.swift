@@ -10,44 +10,66 @@ import Foundation
 struct Theme {
     var vehicle = Content(
         name: "vehicle",
-        emojis: ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🛴", "🚲", "🛵", "🏍️", "🛺", "🚔", "🚍", "🚘", "🚖", "🚡"],
-        numCardsToShow: 12,
-        color: "red"
+        emojis: ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐"],
+        numPairsToShow: nil,    // the number of pairs of cards to show is a random number
+        colors: ["red", "orange"]
     )
-    var animal = Content(
+    var animal = Content(       // default to use all the emoji available in the theme
         name: "animal",
-        emojis: ["🐶", "🐱", "🐰", "🐼", "🐯", "🦁", "🐣", "🦆", "🦉"],
-        numCardsToShow: 8,
-        color: "orange"
+        emojis: ["🐶", "🐱", "🐰", "🐼", "🐯"],
+        colors: ["orange", "yello"]
     )
     var food = Content(
         name: "food",
         emojis: ["🍎", "🫑", "🍗", "🧄", "🥐", "🥨", "🍞", "🥩", "🌭", "🍔", "🍟", "🍕", "🫓", "🥪", "🥙", "🧆", "🌮"],
-        numCardsToShow: 11,
-        color: "yello"
+        numPairsToShow: 11,
+        colors: ["yello", "green"]
     )
     var moon = Content(
         name: "moon",
         emojis: ["🌕", "🌗", "🌓", "🌜", "🌛", "🌑", "🌙"],
-        numCardsToShow: 100,
-        color: "green"
+        numPairsToShow: 100,    // A Theme mistakenly specifies to show more pairs of cards than there are emoji available
+        colors: ["green", "blue"]
     )
     var weather = Content(
         name: "weather",
         emojis: ["☀️", "⛅️", "☁️", "🌦️", "🌧️", "🌩️", "❄️", "🌬️", "☔️", "🌊"],
-        numCardsToShow: 9,
-        color: "blue"
+        numPairsToShow: nil,    // the number of pairs of cards to show is a random number
+        colors: ["blue", "purple"]
     )
     var sport = Content(
         name: "sport",
         emojis: ["⚽️", "🏀", "🏈", "⚾️", "🥎", "🎾", "🏐", "🏉", "🎱", "🥏", "🏓", "🏸", "🏒", "🏑", "🥅", "⛳️"],
-        numCardsToShow: 10,
-        color: "purple"
+        numPairsToShow: 10,
+        colors: ["red", "orange", "yello", "green", "blue", "purple"]
     )
     struct Content {
         let name: String
         let emojis: [String]
-        let numCardsToShow: Int
-        let color: String
+        let numPairsToShow: Int?
+        let colors: [String]
+        init(name: String, emojis: [String], numPairsToShow: Int?, colors: [String]) {
+            self.name = name
+            self.emojis = emojis
+            if let temp = numPairsToShow {
+                if temp > emojis.count {
+                    // Automatically reduce the count of cards to show to match the count of available emoji
+                    self.numPairsToShow = emojis.count
+                }
+                else {
+                    self.numPairsToShow = temp
+                }
+            }
+            else {
+                self.numPairsToShow = nil
+            }
+            self.colors = colors
+        }
+        init(name: String, emojis: [String], colors: [String]) {
+            self.name = name
+            self.emojis = emojis
+            self.numPairsToShow = emojis.count
+            self.colors = colors
+        }
     }
 }
