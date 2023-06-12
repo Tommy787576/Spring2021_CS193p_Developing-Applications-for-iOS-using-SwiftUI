@@ -1,0 +1,28 @@
+A protocol is sort of a "stripped-down" struct/class
+no implementation
+
+protocols:
+1. as a type (rarely)
+2. specify the behavior of a struct, class or enum
+3. turnning don't cares into somewhat cares, ex: Equatable
+4. restrict an extension to work only with certain things
+5. restrict individual functions to work only with certain things
+6. set up an agreement between two entities ex: DropDelegate
+7. facilitate code sharing
+** implementation can be added to a protocol by creating an extension to into
+8. adding filter to Array, Range, String, Dictionary, et. al.
+
+Why protocols?
+It's a way for types to say what they are capable of.
+
+Generics + protocols
+protocol Identifiable {
+    associatedtype ID // instead of <ID> 
+    var id: ID {get}
+}
+protocol Identifiable {
+    associatedtype ID where ID: Hashable // instead of <ID> 
+    var id: ID {get}
+}
+
+things that are Hashable musl also be Equatable -> protocol inheritence
