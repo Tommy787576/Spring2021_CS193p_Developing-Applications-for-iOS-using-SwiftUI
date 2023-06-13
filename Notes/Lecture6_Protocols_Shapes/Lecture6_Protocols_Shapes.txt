@@ -26,3 +26,6 @@ protocol Identifiable {
 }
 
 things that are Hashable musl also be Equatable -> protocol inheritence
+
+Shape is a protocol that inherits from View
+
