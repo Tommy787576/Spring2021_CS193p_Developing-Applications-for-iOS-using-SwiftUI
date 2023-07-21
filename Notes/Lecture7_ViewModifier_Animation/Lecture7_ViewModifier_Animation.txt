@@ -1,0 +1,67 @@
+One way to do animation is by animating a Shape
+The other way is to animate Views via their ViewModifiers
+
+ViewModifiers
+The ViewModifier protocol has one function in it
+protocol ViewModifier {
+    typealias Content
+    func body(content: Content) -> some View {
+        return some View that almost certainly contains the View content
+    }
+}
+
+Only changes can be animated: ViewModifier, Shapes, The "existence" of a View in the UI
+Animation is showing the user changes that have already happened (i.e. the recent past)
+
+not all ViewModifiers are animatable
+
+How do you make an animation "go"?
+1. Implicitly (automatically), by using the view modifier .animation(Animation)
+ex: Text("Some Text")
+    .opacity(scary ? 1 : 0)
+    .rotationEffect(Angle.degrees(upsideDown ? 180 : 0))
+    .animation(Animation.easeInOut)
+
+can control: duration / delay / repeat / repeatForever / curve (
+    .linear: This means exactly what it sounds like: consistent rate throughout, 
+    .easeInOut: Starts out the animation slowly, picks up speed, then slows at the end, 
+    .spring: Provides "soft landing" (a "bounce") for the end of the animation
+)
+
+Now whenever scary or upsideDown changes, the opacity/rotation will be animated
+Warning: Don't use it on container! -> will animate "all" components inside
+
+2. Explicitly, by wrapping withAnimation(Animation) { } around code that might change things
+
+Implicit vs. Explicit Animation
+Implicit: on Views that are typically working independently of other Views
+Explicit: changes in response to some user action -> we want a whole bunch of Views to animate together
+
+3. By making Views be included or exclude from the UI: Transitions
+We use the struct AnyTransition which erases type info for the underlying ViewModifiers
+
+Unlike .animation(), .transition() does not get redistributed to a container's content Views.
+So putting .transition() on the ZStack above only works if the entire ZStack came/went
+
+You can set an animation to use for a transition
+e.g. .transition(AnyTransition.opacity.animation(.linear(duration: 20)))
+
+Matched Geometry Effect:
+Sometimes you want a View to move from one place on screen to another
+.matchedGeometryEffect(id: ID, in: Namespace)   // ID type is a "don't care": Hashable
+Declare the Naespace as a private var in your View like this 
+@Namespace private var myNamespace
+
+.onAppear
+How can you kick off an animation as soon as a View's Container arrives On-Screen?
+-> .onAppear
+
+During animation, the system tells the Shape/ViewModifier the current piece it should show.
+The Shape/ViewModifier makes sure its body draws appropriately at any "piece" value
+
+Shape and ViewModifier Animation:
+The setting of this var is the animation system telling the Shape/VM  which "piece" to draw
+The getting of this var is the animation system getting the start/end points of an animation
+
+The animation only animated Changes!!!!!!!!!!!!!!!!!!!!!!
+We can only animate the content on screen !!!!!!!!!!!!!!!
