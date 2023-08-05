@@ -17,7 +17,7 @@ struct Symbols {
     func get(width: CGFloat, height: CGFloat, count: Int, form: Int, shading: Double, color: Int) -> some View {
         VStack(spacing: 0) {
             Spacer()
-            ForEach(0..<count, id: \.self) { _ in
+            ForEach(0...count, id: \.self) { _ in
                 switch form {
                 case 0:
                     ZStack {
@@ -43,22 +43,22 @@ struct Symbols {
     private func filled(form: some Shape, color: Int, shading: Double) -> some View {
         switch color {
         case 0:
-            return form.scale(x: 0.8, y: 0.8).fill(.red).opacity(shading)
+            return form.scale(x: 0.8, y: 0.7).fill(.red).opacity(shading)
         case 1:
-            return form.scale(x: 0.8, y: 0.8).fill(.green).opacity(shading)
+            return form.scale(x: 0.8, y: 0.7).fill(.green).opacity(shading)
         default:
-            return form.scale(x: 0.8, y: 0.8).fill(.purple).opacity(shading)
+            return form.scale(x: 0.8, y: 0.7).fill(.purple).opacity(shading)
         }
     }
     
     private func border(form: some Shape, color: Int) -> some View {
         switch color {
         case 0:
-            return form.scale(x: 0.8, y: 0.8).stroke(.red, lineWidth: 2.0)
+            return form.scale(x: 0.8, y: 0.7).stroke(.red, lineWidth: 2.0)
         case 1:
-            return form.scale(x: 0.8, y: 0.8).stroke(.green, lineWidth: 2.0)
+            return form.scale(x: 0.8, y: 0.7).stroke(.green, lineWidth: 2.0)
         default:
-            return form.scale(x: 0.8, y: 0.8).stroke(.purple, lineWidth: 2.0)
+            return form.scale(x: 0.8, y: 0.7).stroke(.purple, lineWidth: 2.0)
         }
     }
 }

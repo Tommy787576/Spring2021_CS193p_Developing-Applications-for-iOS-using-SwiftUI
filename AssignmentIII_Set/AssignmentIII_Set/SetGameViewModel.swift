@@ -8,13 +8,10 @@
 import SwiftUI
 
 class SetGameViewModel: ObservableObject {
-    typealias Card = SetGameModel<String>.Card
-    private static let emojis = ["", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", "","", "", "", "", ""]
+    typealias Card = SetGameModel.Card
 
-    private static func createSetGame() -> SetGameModel<String> {
-        SetGameModel<String>(numberOfCards: 10) { idx in
-            emojis[idx]
-        }
+    private static func createSetGame() -> SetGameModel {
+        SetGameModel()
     }
     
     @Published private var model = createSetGame()
@@ -25,5 +22,17 @@ class SetGameViewModel: ObservableObject {
     
     func choose(_ card: Card) {
         model.choose(card)
+    }
+    
+    func dealThreeMoreCards() {
+        model.dealThreeMoreCards()
+    }
+    
+    func deckIsEmpty() -> Bool {
+        model.deckIsEmpty()
+    }
+    
+    func restart() {
+        model = SetGameViewModel.createSetGame()
     }
 }

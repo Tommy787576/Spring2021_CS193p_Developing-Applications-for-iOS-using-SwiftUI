@@ -11,9 +11,32 @@ struct SetGameView: View {
     @ObservedObject var game: SetGameViewModel
     
     var body: some View {
-        AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in cardView(for: card)})
-            .foregroundColor(.gray)
-            .padding(.horizontal)
+        VStack {
+            AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in cardView(for: card)})
+                .foregroundColor(.gray)
+                .padding(.horizontal)
+            HStack {
+                Spacer()
+                VStack {
+                    Button {
+                        game.restart()
+                    } label: {
+                        Image(systemName: "gamecontroller")
+                    }.font(.largeTitle)
+                    Text("New Game").font(.footnote).foregroundColor(.blue)
+                }
+                Spacer()
+                VStack {
+                    Button {
+                        game.dealThreeMoreCards()
+                    } label: {
+                        Image(systemName: "square.3.layers.3d")
+                    }.font(.largeTitle).disabled(game.deckIsEmpty())
+                    Text("Deal Cards").font(.footnote).foregroundColor(game.deckIsEmpty() ? .gray : .blue)
+                }
+                Spacer()
+            }
+        }
     }
     
     @ViewBuilder
@@ -36,7 +59,7 @@ struct CardView: View {
                 let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                 shape.fill().foregroundColor(card.isChosen ? Color.gray.opacity(0.3) : .white)
                 shape.strokeBorder(lineWidth: DrawingConstants.linewidth)
-                symbols.get(width: geometry.size.width, height: geometry.size.height, count: 3, form: 2, shading: 1, color: 1)
+                symbols.get(width: geometry.size.width, height: geometry.size.height, count: card.count, form: card.form, shading: card.shading, color: card.color)
             }
         })
     }
