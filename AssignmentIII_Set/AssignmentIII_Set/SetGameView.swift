@@ -12,6 +12,7 @@ struct SetGameView: View {
     
     var body: some View {
         VStack {
+            Text(game.matchStatusText()).font(.largeTitle)
             AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in cardView(for: card)})
                 .foregroundColor(.gray)
                 .padding(.horizontal)

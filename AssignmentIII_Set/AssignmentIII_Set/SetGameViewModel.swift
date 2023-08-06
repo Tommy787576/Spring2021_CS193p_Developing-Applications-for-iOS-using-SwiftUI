@@ -32,6 +32,18 @@ class SetGameViewModel: ObservableObject {
         model.deckIsEmpty()
     }
     
+    func matchStatusText() -> String {
+        if model.getMatchedState() == 1 {
+            return "Unmatched!"
+        }
+        else if model.getMatchedState() == 2 {
+            return "Matched!"
+        }
+        else {
+            return "Set Game!😀"
+        }
+    }
+    
     func restart() {
         model = SetGameViewModel.createSetGame()
     }
