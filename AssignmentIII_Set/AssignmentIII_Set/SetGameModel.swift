@@ -11,7 +11,7 @@ import Foundation
 // count: 0->one, 1->two, 2->three
 // form: 0->diamond, 1->squiggle(rectangle), 2->oval
 // shading: 0->solid, 0.4->striped(half transparent), 1.0->open
-// color: 0->red, 1->green, 2->purple
+// color: 0->orange, 1->green, 2->purple
 struct SetGameModel {
     private var deck: Array<Card>           // cards not displaying on the screen
     private(set) var cards: Array<Card>     // cards displaying on the screen
@@ -43,7 +43,7 @@ struct SetGameModel {
     }
 
     mutating func choose(_ card: Card) {
-        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
+        if var chosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
             if cards[chosenIndex].isChosen {
                 // deselect can only be done when there's only 1-2 cards is selected
                 if chosenIndices.count < 3 {
@@ -68,14 +68,21 @@ struct SetGameModel {
                         if !deckIsEmpty() {
                             let deckSz = deck.count
                             for idx in 0..<3 {
+                                print(cards[chosenIndices[idx]].id)
                                 cards[chosenIndices[idx]] = deck[deckSz - 1 - idx]
                             }
                             deck.removeLast(3)
                         }
                         else {
+                            print(chosenIndices[0..<3].sorted(by: >))
                             for idx in chosenIndices[0..<3].sorted(by: >) {
+                                print(cards[idx].id)
                                 cards.remove(at: idx)
                             }
+                            if let newChosenIndex = cards.firstIndex(where: { $0.id == card.id }) {
+                                chosenIndex = newChosenIndex
+                            }
+                            chosenIndices[3] = chosenIndex
                         }
                     }
                     else {  // 3 cards unmatched and the next card is selected

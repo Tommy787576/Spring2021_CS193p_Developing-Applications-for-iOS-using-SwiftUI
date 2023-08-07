@@ -11,7 +11,7 @@ import SwiftUI
 // count: 0->one, 1->two, 2->three
 // form: 0->diamond, 1->squiggle(rectangle), 2->oval
 // shading: 0->solid, 0.4->striped(half transparent), 1.0->open
-// color: 0->red, 1->green, 2->purple
+// color: 0->orange, 1->green, 2->purple
 // https://www.hackingwithswift.com/quick-start/swiftui/how-to-fill-and-stroke-shapes-at-the-same-time
 struct Symbols {
     func get(width: CGFloat, height: CGFloat, count: Int, form: Int, shading: Double, color: Int) -> some View {
@@ -43,7 +43,7 @@ struct Symbols {
     private func filled(form: some Shape, color: Int, shading: Double) -> some View {
         switch color {
         case 0:
-            return form.scale(x: 0.8, y: 0.7).fill(.red).opacity(shading)
+            return form.scale(x: 0.8, y: 0.7).fill(.orange).opacity(shading)
         case 1:
             return form.scale(x: 0.8, y: 0.7).fill(.green).opacity(shading)
         default:
@@ -54,7 +54,7 @@ struct Symbols {
     private func border(form: some Shape, color: Int) -> some View {
         switch color {
         case 0:
-            return form.scale(x: 0.8, y: 0.7).stroke(.red, lineWidth: 2.0)
+            return form.scale(x: 0.8, y: 0.7).stroke(.orange, lineWidth: 2.0)
         case 1:
             return form.scale(x: 0.8, y: 0.7).stroke(.green, lineWidth: 2.0)
         default:
