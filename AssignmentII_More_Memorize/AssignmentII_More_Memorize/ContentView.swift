@@ -5,8 +5,6 @@
 //  Created by 林士平 on 2023/4/11.
 //
 
-// click the pin on canvas: it can fix on the page!
-
 import SwiftUI
 
 struct ContentView: View {
