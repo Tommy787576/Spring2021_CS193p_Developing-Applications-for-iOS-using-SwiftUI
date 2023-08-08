@@ -40,7 +40,39 @@ class SetGameViewModel: ObservableObject {
             return "Matched!"
         }
         else {
-            return "Set Game!😀"
+            return "Set Game!"
+        }
+    }
+    
+    func matchStatusTextColor() -> Color {
+        if model.getMatchedState() == 1 {
+            return Color.red
+        }
+        else if model.getMatchedState() == 2 {
+            return Color.cyan
+        }
+        else {
+            return Color.black
+        }
+    }
+    
+    func getDealCardsIconColor() -> Color {
+        model.deckIsEmpty() ? Color.gray : Color.blue
+    }
+    
+    func getCardBackgroundColor(_ card: Card) -> Color {
+        if model.getMatchedState() == 1 && card.isChosen {
+            // the cards involved in a non-matching trio must look different
+            return Color.red.opacity(0.3)
+        }
+        else if model.getMatchedState() == 2 && card.isChosen {
+            return Color.cyan.opacity(0.3)
+        }
+        else if card.isChosen {
+            return Color.gray.opacity(0.3)
+        }
+        else {
+            return Color.white
         }
     }
     

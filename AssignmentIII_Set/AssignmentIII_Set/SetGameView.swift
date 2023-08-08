@@ -12,7 +12,8 @@ struct SetGameView: View {
     
     var body: some View {
         VStack {
-            Text(game.matchStatusText()).font(.largeTitle)
+            Spacer()
+            Text(game.matchStatusText()).font(.largeTitle).fontWeight(.bold).foregroundColor(game.matchStatusTextColor())
             AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in cardView(for: card)})
                 .foregroundColor(.gray)
                 .padding(.horizontal)
@@ -33,7 +34,7 @@ struct SetGameView: View {
                     } label: {
                         Image(systemName: "square.3.layers.3d")
                     }.font(.largeTitle).disabled(game.deckIsEmpty())
-                    Text("Deal Cards").font(.footnote).foregroundColor(game.deckIsEmpty() ? .gray : .blue)
+                    Text("Deal Cards").font(.footnote).foregroundColor(game.getDealCardsIconColor())
                 }
                 Spacer()
             }
@@ -42,7 +43,7 @@ struct SetGameView: View {
     
     @ViewBuilder
     private func cardView(for card: SetGameViewModel.Card) -> some View {
-        CardView(card: card)
+        CardView(card: card, game: game)
             .padding(4)
             .onTapGesture {
                 game.choose(card)
@@ -53,12 +54,13 @@ struct SetGameView: View {
 struct CardView: View {
     var card: SetGameViewModel.Card
     let symbols: Symbols = Symbols()
+    var game: SetGameViewModel
     
     var body: some View {
         GeometryReader(content: { geometry in
             ZStack {
                 let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                shape.fill().foregroundColor(card.isChosen ? Color.gray.opacity(0.3) : .white)
+                shape.fill().foregroundColor(game.getCardBackgroundColor(card))
                 shape.strokeBorder(lineWidth: DrawingConstants.linewidth)
                 symbols.get(width: geometry.size.width, height: geometry.size.height, count: card.count, form: card.form, shading: card.shading, color: card.color)
             }
@@ -80,6 +82,6 @@ struct CardView: View {
 struct SetGameView_Previews: PreviewProvider {
     static var previews: some View {
         let game = SetGameViewModel()
-        return SetGameView(game: game)
+        SetGameView(game: game).preferredColorScheme(.light)
     }
 }

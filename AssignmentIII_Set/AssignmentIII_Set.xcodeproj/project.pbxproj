@@ -11,11 +11,12 @@
 		1916C2AB2A6FECFA0097BE08 /* SetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1916C2AA2A6FECFA0097BE08 /* SetGameView.swift */; };
 		1916C2AD2A6FECFB0097BE08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1916C2AC2A6FECFB0097BE08 /* Assets.xcassets */; };
 		1916C2B02A6FECFB0097BE08 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1916C2AF2A6FECFB0097BE08 /* Preview Assets.xcassets */; };
-		198D5AA92A7A6EC2009EDE33 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D5AA82A7A6EC2009EDE33 /* AspectVGrid.swift */; };
 		198D5AAB2A7BA35A009EDE33 /* SetGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D5AAA2A7BA35A009EDE33 /* SetGameModel.swift */; };
 		198D5AAD2A7BA59E009EDE33 /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D5AAC2A7BA59E009EDE33 /* SetGameViewModel.swift */; };
 		198D5AAF2A7D125D009EDE33 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D5AAE2A7D125D009EDE33 /* Diamond.swift */; };
 		198D5AB12A7DE103009EDE33 /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D5AB02A7DE103009EDE33 /* Symbols.swift */; };
+		19C55D0B2A8264F900190C7D /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C55D0A2A8264F800190C7D /* AspectVGrid.swift */; };
+		19C55D0D2A82654100190C7D /* FeaturesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C55D0C2A82654100190C7D /* FeaturesEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,11 +25,12 @@
 		1916C2AA2A6FECFA0097BE08 /* SetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameView.swift; sourceTree = "<group>"; };
 		1916C2AC2A6FECFB0097BE08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1916C2AF2A6FECFB0097BE08 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		198D5AA82A7A6EC2009EDE33 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = SOURCE_ROOT; };
 		198D5AAA2A7BA35A009EDE33 /* SetGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameModel.swift; sourceTree = "<group>"; };
 		198D5AAC2A7BA59E009EDE33 /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
 		198D5AAE2A7D125D009EDE33 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		198D5AB02A7DE103009EDE33 /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
+		19C55D0A2A8264F800190C7D /* AspectVGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
+		19C55D0C2A82654100190C7D /* FeaturesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +63,14 @@
 		1916C2A72A6FECFA0097BE08 /* AssignmentIII_Set */ = {
 			isa = PBXGroup;
 			children = (
-				198D5AA82A7A6EC2009EDE33 /* AspectVGrid.swift */,
+				19C55D0A2A8264F800190C7D /* AspectVGrid.swift */,
 				1916C2A82A6FECFA0097BE08 /* AssignmentIII_SetApp.swift */,
 				1916C2AA2A6FECFA0097BE08 /* SetGameView.swift */,
 				198D5AAC2A7BA59E009EDE33 /* SetGameViewModel.swift */,
 				198D5AAA2A7BA35A009EDE33 /* SetGameModel.swift */,
 				198D5AB02A7DE103009EDE33 /* Symbols.swift */,
 				198D5AAE2A7D125D009EDE33 /* Diamond.swift */,
+				19C55D0C2A82654100190C7D /* FeaturesEnum.swift */,
 				1916C2AC2A6FECFB0097BE08 /* Assets.xcassets */,
 				1916C2AE2A6FECFB0097BE08 /* Preview Content */,
 			);
@@ -153,9 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1916C2AB2A6FECFA0097BE08 /* SetGameView.swift in Sources */,
+				19C55D0D2A82654100190C7D /* FeaturesEnum.swift in Sources */,
 				1916C2A92A6FECFA0097BE08 /* AssignmentIII_SetApp.swift in Sources */,
+				19C55D0B2A8264F900190C7D /* AspectVGrid.swift in Sources */,
 				198D5AAB2A7BA35A009EDE33 /* SetGameModel.swift in Sources */,
-				198D5AA92A7A6EC2009EDE33 /* AspectVGrid.swift in Sources */,
 				198D5AAD2A7BA59E009EDE33 /* SetGameViewModel.swift in Sources */,
 				198D5AAF2A7D125D009EDE33 /* Diamond.swift in Sources */,
 				198D5AB12A7DE103009EDE33 /* Symbols.swift in Sources */,
@@ -295,6 +299,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,6 +329,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -14,8 +14,8 @@
             filePath = "AssignmentIII_Set/SetGameModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "checkIsSet()"
             landmarkType = "7">
          </BreakpointContent>
